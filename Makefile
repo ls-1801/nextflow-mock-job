@@ -19,4 +19,14 @@ nextflow/kuberun:
 				--file Cargo.toml \
 				-remoteConfig $(HOSTDATA)/nextflow.config  \
 				-v pvc-host-data:$(HOSTDATA) \
+				-with-dag dag.mmd \
 				-c nextflow/nextflow.config
+
+
+nextflow/docker:
+	$(NEXTFLOW) results/do_stuff.nf \
+				--file Cargo.toml \
+				-with-dag dag.mmd \
+				-c results/nextflow.config \
+				-with-trace trace.txt \
+				-with-docker dostuff:latest

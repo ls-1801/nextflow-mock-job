@@ -10,7 +10,7 @@ process splitLetters {
     path 'chunk_*'
 
   """
-  do_stuff --runtime quadratic --input $input_file --output chunk_ --n-output 16 --output-ratio 200
+  do_stuff --runtime quadratic --input $input_file --output chunk_ --n-output 8 --output-ratio 200
   """
 }
 
@@ -18,10 +18,10 @@ process convertToUpper {
   input:
     path input_file
   output:
-    path 'output_0'
+    path 'output1'
 
   """
-  echo $input_file \$(do_stuff --runtime quadratic --input $input_file --output 'output_') 
+  echo $input_file \$(do_stuff --runtime quadratic --input $input_file --output 'output1') 
   """
 }
 
@@ -29,10 +29,10 @@ process convertToUpperLinear {
   input:
     path input_file
   output:
-    path 'output_0'
+    path 'output2'
 
   """
-  echo $input_file \$(do_stuff --runtime linear --input $input_file --output 'output_') 
+  echo $input_file \$(do_stuff --runtime linear --input $input_file --output 'output2') 
   """
 }
 
@@ -44,7 +44,7 @@ process mergeQuadratic {
     stdout
 
   """
-  echo $input_file \$(do_stuff --runtime quadratic --input $input_file1 --input $input_file2) 
+  echo $input_file1, $input_file2 \$(do_stuff --runtime quadratic --input $input_file1 --input $input_file2) 
   """
 }
 

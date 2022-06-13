@@ -3,3 +3,6 @@
 /.idea
 /.nextflow
 .nextflow.log*
+/work
+dag.mmd*
+trace.txt*
